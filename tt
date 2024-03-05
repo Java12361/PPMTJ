@@ -1,0 +1,220 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+//#include <windows.h>
+const int totalnumofitems =10;
+char *inventory[totalnumofitems];
+int item=0;
+char *specialItems[5] = {"Phra Apai Mani's Magical Flute"};
+int mirrors=0;
+
+void pressEnterToContinue()
+{
+    printf("Press Enter to Continue");
+    while(getchar()!='\n');
+    system("clear");
+}
+
+void addItem(char item_name[])
+{
+    inventory[item] = item_name;
+    printf("inventory %s \n", inventory[item]);
+    item++;
+    printf("%d \n", item);
+}
+
+int doYesNoQues(char ques[]) //insert question, return 1 if yes, return 0 if no
+{
+    char ans;
+    do
+    {
+        fflush(stdin);
+        system("clear"); //system("cls");
+        printf("%s \nYour answer is (Y/N): ", ques);
+        scanf(" %c", &ans);
+    } while (ans != 'Y' && ans != 'y' && ans != 'N' && ans != 'n');
+    if (ans == 'Y' || ans == 'y') return 1;
+    else return 0;
+}
+
+int doChoiceQues(char ques[], char *choice[], int n) //insert question, array of choices, num of choices
+{
+    int ans;
+    do
+    {
+        fflush(stdin);
+        system("clear");
+        printf("%s \n", ques);
+        for (int i = 0; i < n; i++) // print choices
+        {
+            printf("%d. %s \n", i + 1, choice[i]);
+        }
+        printf("Your answer is (number): ");
+        scanf("%d", &ans);    
+    } while (ans < 1 || ans > n);
+    return ans;
+}
+
+int doFightRavana() //ยังมรสู้ยังไง, return 1 if win, return 0 if lose
+{
+    int n;
+    scanf("%d", &n);
+    if (n==1) return 1;
+    else return 0;
+}
+
+int doFightRama()
+{
+    printf("fight fight rama will do ka");
+    return 0;
+}
+
+void doCrystalChoosing() //4 endings in total for this route
+{
+    system("clear");
+    if (doYesNoQues("มีอัญมณี aow mai")==1)
+    {
+        char *crystalChoices[2] = {"One", "Two"};
+        int ans = doChoiceQues("มีอัญมณี 2 แบบ choose si", crystalChoices, 2);
+        switch (ans)
+        {
+            case 1: printf("zombie apocalypse \n"); break;
+            case 2: printf("rama is weakened yay we go home"); break;
+
+            //ดูว่าจะให้ refuse pen the 3rd choice หรือว่าให้แยกเลือกไม่เลือก ละค่อยเลือก
+        }
+    }
+    else
+    {
+        system("clear");
+        printf("go talk to rama, rama manipulate hai glub ma aow");
+        pressEnterToContinue();
+        if (doYesNoQues("jer ravana again mai")==1)
+        {
+            printf("ravana warns again\n");
+            pressEnterToContinue();
+            doCrystalChoosing();
+        }
+        else
+        {
+            if (doFightRama()==1) printf("win ja go home");
+            else printf("sad wa lose โดนรามขโมยกระจกทั้งหมด ปล่อยให้ใช้ชีวิตในโลกนั้นต่อแบบพิการ");
+        }
+    }
+}
+
+int doCleansing() //QnA แยกอีกไฟลดีกว่า
+{
+    char q1[]= "อะไรเอ่ย เมื่อก่อนไม่มี แต่จะมีต่อไป ไม่มีใครเคยเห็น ไม่มีวันเห็น แต่ข้าคือที่พึ่งของคนที่ยังอยู่ และหายใจ ข้าคืออะไร(100%)"; //actually can input the string directly into the functon as a parameter but did this to be organized ka
+    char q2[]= "What goes on four feet in the morning, two feet in midday, and three feet in the evening? (75%)";
+    char q3[]= "Which gas do humans breathe out with every breath? (50%)";
+    char q4[]= "tell me, hero, how does it feel to be loved? To have someone's affection freely given, to bask in their adoration without question? (50%)";
+    char q5[]= "Q5 (50%)คุณจะช่วยปลดปล่อยผีเสื้อสมุทรอย่างไร";
+    
+    char *choicesQ1[4] = {"วันพรุ่งนี้", "Two", "Three", "Four"}; //an array of pointers to strings > each pointer points to a string
+    char *choicesQ2[4] = {"One", "Two", "Human", "Four"}; 
+    char *choicesQ3[4] = {"One", "Two", "Three", "Carbon Dioxide (CO2) "}; 
+    char *choicesQ4[4] = {"One", "Two", "correct", "Four"}; 
+    char *choicesQ5[4] = {"ฆ่านางเงือก", "ตามหาพระอภัยมณี", "ตามฤาษีมาปลดปล่อย", "ตามสินสมุทรกลับมา"}; 
+
+
+    system("clear");
+
+    int ans = doChoiceQues(q1, choicesQ1, 4);
+    if (ans!=1) //wrong -> remove selected choice, 3 choices remain
+    {
+        if (ans==2) //remove choice 2
+        {
+            choicesQ1[1] = choicesQ1[2]; //can be done with an array of pointers to strings
+            choicesQ1[2] = choicesQ1[3];
+        }
+        else if (ans==3) //remove choice 3
+        {
+            choicesQ1[2] = choicesQ1[3];
+        }
+        //one more chance if wrong mirror breaks
+        if (doChoiceQues(q1, choicesQ1, 3)!=1)
+        {
+            printf("mirror breaks");
+            return 0;
+        }
+    }
+    ans = doChoiceQues(q2, choicesQ2, 4);
+    if (ans!=3) //wrong -> remove selected choice, 3 choices remain
+    {
+        if (ans==4)
+        {
+            if (doChoiceQues(q2, choicesQ2, 3)!=3)
+            {
+                printf("mirror breaks \n");
+                return 0;
+            }
+        }
+        else
+        {
+            if (ans==1) //remove choice 1
+            {
+                choicesQ2[0] = choicesQ2[1]; //can be done with an array of pointers to strings
+                choicesQ2[1] = choicesQ2[2];
+                choicesQ2[2] = choicesQ2[3];
+            }
+            else if (ans==2) //remove choice 2
+            {
+                choicesQ2[1] = choicesQ2[2];
+                choicesQ2[2] = choicesQ2[3];
+            }
+            //correct ans move to choice 2 //one more chance if wrong mirror breaks
+            if (doChoiceQues(q2, choicesQ2, 3)!=2) 
+            {
+                printf("mirror breaks \n");
+                return 0;
+            }
+        }
+    }
+    if (doChoiceQues(q3, choicesQ3, 4)==4)
+    {
+        if (doChoiceQues(q4, choicesQ4, 4)==3)
+        {
+            if (doChoiceQues(q5, choicesQ5, 4)==2) addItem(specialItems[0]);
+        }
+    }
+    return 1;
+}
+
+int doIsland1() //get mirror return 1, if not return 0
+{
+    system("clear");
+    if (doYesNoQues("cleanse mai ja")==1) return doCleansing();
+    else 
+    {
+        printf("mirror breaks \n");
+        return 0;
+    }
+}
+
+int main() //แค่ลอง test functions เฉยๆ เดี๋ยวมาจัดใหม่
+{
+    printf("fw \n");
+    addItem("yay");
+    addItem("gs");
+    for (int i=0; i<item; i++) printf("%s ", inventory[i]);
+    pressEnterToContinue();
+    if (doFightRavana()==1) //win-->offer crystal to choose
+    {
+        doCrystalChoosing(); //4 endings
+        if (doIsland1()==1)
+        {
+            mirrors++;
+        } 
+        printf("%d", mirrors);
+    }
+    else //fight rama //2 endings
+    {
+        printf("สู้แพ้ ออกจากนรก กลับไปเจอราม\n");
+        printf("รามโกรธมากๆ ทะเลาะกันจนรามเผลอหลุดพูดความจริง py ช็อคคึ\n"); 
+        if (doFightRama()==1) printf("win win");
+        else printf("loselose");
+    }
+
+    return 0;
+}
