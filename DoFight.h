@@ -46,25 +46,19 @@ void Drawing(int n) //for drawing later
     }
 }
 
-int main()
+int DoFight(char *playername,int playerhealth,int playerattack,int playercritical)
 {
     srand(time(NULL)); // Seed the random number generator
 
-    struct Stats player, enemy;
+    struct Stats enemy;
     int action;
-
-    printf("Insert your name: ");
-    scanf("%s", player.Name);
-    player.Health = 500;
-    player.Attack = 10;
-    player.Critical = 30;
 
     strcpy(enemy.Name, "Praram");
     enemy.Health = 300;
     enemy.Attack = 15;
     enemy.Critical = 0;
 
-    while (player.Health > 0 && enemy.Health > 0)
+    while (playerhealth > 0 && enemy.Health > 0)
     {
         printf("Action\n1. Attack\n2. Defence\nChoose an action: ");
         scanf("%d", &action);
@@ -73,14 +67,14 @@ int main()
         switch (action)
         {
         case 1: // Attack
-            printf("%s attacks %s!\n", player.Name, enemy.Name);
-            enemy.Health = DoAttack(player.Attack, enemy.Health, player.Critical);
+            printf("%s attacks %s!\n", playername, enemy.Name);
+            enemy.Health = DoAttack(playerattack, enemy.Health, playercritical);
             printf("%s's health is now %d\n\n", enemy.Name, enemy.Health);
             break;
         case 2: // Defence
-            printf("%s defends!\n", player.Name);
-            player.Health = DoDefence(player.Health, 70);
-            printf("%s's health is now %d\n", player.Name, player.Health);
+            printf("%s defends!\n", playername);
+            playerhealth = DoDefence(playerhealth, 70);
+            printf("%s's health is now %d\n", playername, playerhealth);
             break;
         default:
             printf("Invalid action. Please choose again.\n");
@@ -93,9 +87,9 @@ int main()
         {
             if(i<6) //70%
             {
-                printf("%s attacks %s!\n", enemy.Name, player.Name);
-                player.Health = DoAttack(enemy.Attack, player.Health, enemy.Critical);
-                printf("%s's health is now %d\n", player.Name, player.Health);
+                printf("%s attacks %s!\n", enemy.Name, playername);
+                playerhealth = DoAttack(enemy.Attack, playerhealth, enemy.Critical);
+                printf("%s's health is now %d\n", playername, playerhealth);
             }
             else if(i<7) //10%
             {
@@ -110,9 +104,9 @@ int main()
         }
     }
 
-    if (player.Health > 0)
+    if (playerhealth > 0)
     {
-        printf("%s wins!\n", player.Name);
+        printf("%s wins!\n", playername);
     }
     else
     {
