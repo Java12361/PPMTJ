@@ -1,22 +1,40 @@
+#include <stdio.h>
+#include "Function.h"
+#define bold "\e[1m"
+#define bold_off "\e[m"
+
 void doIntro5(char player[])
 {
-    system("clear");
-    print_mid("[ CHAPTER 5 ]\n");
-    print_mid("Lost in the Jungle\n");
-    print_mid("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"), sleep(1);
-    art_i5();
-    conv(player,"I can't believe I'm still alive. This must be Meuang Lap Lae island that the Nagas mentioned.");
+    conv(player,"I can't believe I'm still alive. This must be Meuang Lap Lae island that Nagas mentioned.");
     conv(player,"But where is Phra-Ram? Phra-Ram!!, you haven't told the mission yet. Where are you?!");
-    print_mid("[ While you are exploring the island and calling out for Phra-Ram, you spot");
-    print_mid("a glass bottle floating nearby. Curious, you pick it up and find a message inside. ]"), sleep(1);
+    print_mid("[ While you were exploring the island and calling out for Phra-Ram, you spotted a glass bottle ]");
+    print_mid("[ it's floating nearby. As your curious, you pick it up and find a message inside. ]");
+    sleep(1);
     print_mid("____________________________________________________________________________________\n");
-    print_mid("Sheet of paper 1\n");
+    print_mid("Sheet of paper 1");
     print_mid("____________________________________________________________________________________\n");
-    print_mid("'Journey to unravel each mystery, and therein lies the answer you seek.'\n");
-    print_mid("____________________________________________________________________________________\n"), sleep(2);
+    sleep(1);
+    print_mid("\'Journey to unravel each mystery, and therein lies the answer you seek.\'");
+    sleep(1);
+    print_mid("____________________________________________________________________________________\n");
     conv(player,"Hmm, so it means there will be another sheet?");
     conv(player,"Oh!, wait... what's that!");
-    pressEnterToContinue();
+    print_mid("____________________________________________________________________________________\n");
+    print_mid("Sheet of paper 2");
+    print_mid("____________________________________________________________________________________\n");
+    sleep(1);
+    print_mid("\'The jester of the jungle green");
+    sleep(1);
+    print_mid("Was the funniest sight ever seen");
+    sleep(1);
+    print_mid("With a skip and a hop");
+    sleep(1);
+    print_mid("From tree top to top");
+    sleep(1);
+    print_mid("He was the king of the jungle scene.\'\n");
+    sleep(1);
+    print_mid("By Dan Higgins 2024");
+    print_mid("____________________________________________________________________________________\n");
 }
 
 void doOutro5(char player[])
@@ -24,16 +42,20 @@ void doOutro5(char player[])
     conv(player,"I'm so tired...");
     conv(player,"I'll take a break until the old man returns...");
     print_mid("[ Exhaustion takes over, and you fall asleep. ]");
-    print_mid(". . ."), sleep(1);
-    print_mid(" . . "), sleep(1);
-    print_mid("  .  ");
-    print_mid("____________________________________________________________________________________\n"), sleep(1);
+    print_mid(". . .");
+    sleep(2);
+    print_mid(". .");
+    sleep(1);
+    print_mid(".");
+    sleep(1);
+    print_mid("____________________________________________________________________________________\n");
+    sleep(1);
     print_mid(" [ In a dream, you see a man embracing his lifeless lover, promising to bring her back to life. ] ");
-    print_mid("?: I swear! I'll do everything in my power to bring you back to life, my dear");
-    print_mid("____________________________________________________________________________________\n"), sleep(1);
-    print_mid("."), sleep(1);
-    print_mid("."), sleep(1);
-    print_mid("."), sleep(1);
+    sleep(1);
+    print_mid("?!!?!?! ");
+    sleep(1);
+    print_mid("I swear! I'll do everything in my power to bring you back to life, my dear");
+    sleep(1);
     doYesNoQues("Hey!... Hey! kid, you alright?");
     print_mid(" [ You wake up from a deep sleep and you heard Phra-Ram call you so you get one a ship. ] ");
     print_mid(" [ ...The man in your dream feels just like Rama..., you think. ]");
@@ -42,52 +64,11 @@ void doOutro5(char player[])
 int doIsland5(char player[])
 {
     doIntro5(player);
-    char Q1[]= {"____________________________________________________________________________________\n"
-                "                                  Sheet of paper 2\n"
-                "____________________________________________________________________________________\n"
-                "        ' The jester of the jungle green,     Was the funniest sight ever seen.\n"
-                "     With a skip and a hop,                   From tree top to top,\n"
-                "     He was the king of the jungle scene.\n"
-                "                                By Dan Higgins 2024\n"
-                "____________________________________________________________________________________\n"
-                "\nWhat is it?\n"};
-
-    char Q2[]= {"____________________________________________________________________________________\n"
-                "                                  Sheet of paper 3\n"
-                "____________________________________________________________________________________\n"
-                "        ' This pirate of the over sea,		   No black-hulled brig he sails,\n"
-                "     No black flag at the mizzen-peak	       Flaunts death-heads to the gales.\n"
-                "     Yet fiercer than the wild Corsair	       This pirate of the upper air.\n"
-                "     Watch how he listless drifts along,	   His wings with winds at sport— \n"
-                "     But look! a sail has hove in sight,	   A dove has crossed to port.\n"
-                "     See how he crowds on ev'ry sail          And screams his war-cry to the gale.\n"
-                "                               By James Edwin Campbell                              \n"
-                "____________________________________________________________________________________\n"
-                "\nWhat is it?\n"};
-                
-    char Q3[]= {"_______________________________________________________________________________________________\n"
-                "                                         Sheet of paper 4 \n"
-                "_______________________________________________________________________________________________\n"
-                "     This noble monarch of the Afric waste		    Meets with no rival to contest his reign,\n"
-                "   With his surpassing strength and agile stride	He can o'er come each creature of the plain.\n"
-                "   He dashes to the earth the tall giraffe			Who towers above the summits of the woods;\n"
-                "   He tracks the herds of shaggy buffaloes,		And slays the bull in solitudes;\n"
-                "   He preys on nimble flocks of antelopes,			The pallah, oryx, quagga and wild-beest.\n"
-                "   O'ertakes the blesbok in its swiftest flight,	On zebra and the eland makes his feast.\n"
-                "                                         by Isaac McLellan\n"
-                "______________________________________________________________________________________________\n"
-                "\nWhat is it?\n"};
-                
-    char Q4[] = {"____________________________________________________________________\n"
-                "                           Sheet of paper 5\n"
-                "_____________________________________________________________________\n"
-                "   ' A narrow fellow in the grass		    Occasionally rides;\n"
-                "   You may have met him, — did you not,	His notice sudden is.\n"
-                "   The grass divides as with a comb,		A spotted shaft is seen;\n"
-                "   And then it closes at your feet		    And opens further on. '\n"
-                "                          by Emily Dickinson"
-                "_____________________________________________________________________\n"
-                "\nWhat is it?\n"};
+    pressEnterToContinue();
+    char Q1[] = {"The jester of the jungle green\nWas the funniest sight ever seen.\nWith a skip and a hop\nFrom tree top to top,\nHe was the king of the jungle scene.\n\n *** What is it? ***"};
+    char Q2[] = {"This pirate of the over sea\nNo black-hulled brig he sails,\nNo black flag at the mizzen-peak\nFlaunts death-heads to the gales.\nYet fiercer than the wild Corsair\nThis pirate of the upper air.\nWatch how he listless drifts along\nHis wings with winds at sport\nBut look! a sail has hove in sight\nA dove has crossed to port.\nSee how he crowds on ev'ry sail\nAnd screams his war-cry to the gale.\n\n *** What is it? *** "};
+    char Q3[] = {"This noble monarch of the Afric waste	Meets with no rival to contest his reign,\nWith his surpassing strength and agile stride\nHe can o'er come each creature of the plain.\nHe dashes to the earth the tall giraffe\nWho towers above the summits of the woods;\nHe tracks the herds of shaggy buffaloes\nAnd slays the bull in solitudes;\nHe preys on nimble flocks of antelopes\nThe pallah, oryx, quagga and wild-beest.\nO'ertakes the blesbok in its swiftest flight\nOn zebra and the eland makes his feast\n\n *** What is it? ***"};
+    char Q4[] = {"A narrow fellow in the grass\nOccasionally rides;\nYou may have met him, — did you not,His notice sudden is.\nThe grass divides as with a comb\nA spotted shaft is seen;\nAnd then it closes at your feet\nAnd opens further on.\n\n *** What is it? *** "};
 
     char *CQ1[] = {"Tiger", "Salmon", "Hawk", "Monkey"};
     char *CQ2[] = {"Tiger", "Salmon", "Hawk", "Gorilla"};
@@ -96,15 +77,45 @@ int doIsland5(char player[])
 
     if (doChoiceQues(Q1, CQ1, 4)==4)
     {
-        system("clear");
-        conv(player,"It's about a " bold "monkey?" bold_off " Hmmm...");
-        print_mid("[ You spot a " bold "monkey" bold_off " insight ]\n");
-        conv(player,"There! I see another sheet of paper!");
-        print_mid(" [ You're approaching it with something you think is a gun in your hand ]\n");
-        conv(player,"Aight then you take this BANANA and give me that paper aight?");
-        conv("Monkey","Oo oo ah ah ook okok");
-        conv(player,"I'll take that as a yes.");
-        print_mid(" [ You start reading the paper. ]\n");
+        conv(player,"The letter about a " bold "monkey?" bold_off " Hmmm...");
+        print_mid("[ You spotted a " bold "monkey" bold_off " insight ]");
+        printf("\n");
+        conv(player,"Hey!.. Hey! is that's a Monkey?, on this beach!?");
+        print_mid(" [ You approching it in a distance with something you think is gun in your hand ]");
+        conv(player,"aight then you take this BANANA and give me that paper to me aight?.");
+        conv("Monkey","oo oo ah ah ook okok");
+        conv(player,"HA! I take that as a yes.");
+        print_mid(" [ You start to reading it ] ");
+        print_mid("____________________________________________________________________________________\n");
+        print_mid("Sheet of paper 3");
+        print_mid("____________________________________________________________________________________\n");
+        sleep(1);
+        print_mid("\' This pirate of the over sea");
+        sleep(1);
+        print_mid("No black-hulled brig he sails,");
+        sleep(1);
+        print_mid("No black flag at the mizzen-peak");
+        sleep(1);
+        print_mid("Flaunts death-heads to the gales.");
+        sleep(1);
+        print_mid("Yet fiercer than the wild Corsair");
+        sleep(1);
+        print_mid("This pirate of the upper air.");
+        sleep(1);
+        print_mid("Watch how he listless drifts along");
+        sleep(1);
+        print_mid("His wings with winds at sport—");
+        sleep(1);
+        print_mid("But look! a sail has hove in sight");
+        sleep(1);
+        print_mid("A dove has crossed to port.");
+        sleep(1);
+        print_mid("See how he crowds on ev'ry sail");
+        sleep(1);
+        print_mid("And screams his war-cry to the gale.\'\n");
+        sleep(1);
+        print_mid("By James Edwin Campbell");
+        print_mid("____________________________________________________________________________________\n");
         pressEnterToContinue();
 
         if (doChoiceQues(Q2, CQ2, 4)==3)
@@ -116,6 +127,38 @@ int doIsland5(char player[])
             print_mid("[ There was a piece of paper tied to its leg ]");
             conv(player,"Wait... another piece of paper? again? ");
             print_mid(" [ You take out the piece of paper and start to read it. ] ");
+
+            print_mid("____________________________________________________________________________________\n");
+            print_mid("Sheet of paper 4");
+            print_mid("____________________________________________________________________________________\n");
+            sleep(1);
+            print_mid("\'This noble monarch of the Afric waste");
+            sleep(1);
+            print_mid("Meets with no rival to contest his reign");
+            sleep(1);
+            print_mid("With his surpassing strength and agile stride");
+            sleep(1);
+            print_mid("He can o'er come each creature of the plain.");
+            sleep(1);
+            print_mid("He dashes to the earth the tall giraffe");
+            sleep(1);
+            print_mid("Who towers above the summits of the woods;");
+            sleep(1);
+            print_mid("He tracks the herds of shaggy buffaloes");
+            sleep(1);
+            print_mid("And slays the bull in solitudes");
+            sleep(1);
+            print_mid("He preys on nimble flocks of antelopes");
+            sleep(1);
+            print_mid("The pallah, oryx, quagga and wild-beest.");
+            sleep(1);
+            print_mid("O'ertakes the blesbok in its swiftest flight");
+            sleep(1);
+            print_mid("On zebra and the eland makes his feast. \'\n");
+            sleep(1);
+            print_mid("by Isaac McLellan");
+            sleep(1);
+            print_mid("____________________________________________________________________________________\n");
             pressEnterToContinue();
             if (doChoiceQues(Q3, CQ3, 4)==3)
             {
@@ -128,8 +171,30 @@ int doIsland5(char player[])
                 print_mid("However, it notices you and begins to walk toward you. ]");
                 sleep(2);
                 print_mid("[ Eventually, it poop out a piece of paper from its buttt. ]");
-                conv(player,"Ewww ");
+                conv(player,"Ehewww (tt ew sound)");
 
+                print_mid("____________________________________________________________________________________\n");
+                print_mid("Sheet of paper 5");
+                print_mid("____________________________________________________________________________________\n");
+                sleep(1);
+                print_mid("\'A narrow fell** in the grass");
+                sleep(1);
+                print_mid("Occasionally rides");
+                sleep(1);
+                print_mid("You may have met him, — d*d you not,");
+                sleep(1);
+                print_mid("His notice sud**n is.");
+                sleep(1);
+                print_mid("The grass div*des as with a comb");
+                sleep(1);
+                print_mid("A sp**ted shaft is seen");
+                sleep(1);
+                print_mid("And ***n it closes at your feet");
+                sleep(1);
+                print_mid("And opens further *n. \'\n");
+                sleep(1);
+                print_mid("by Emily* Dickinson");
+                print_mid("____________________________________________________________________________________\n");
                 pressEnterToContinue();
                 
                 if (doChoiceQues(Q4, CQ4, 4)==2)
@@ -161,10 +226,6 @@ int doIsland5(char player[])
                 }
             }
         }
-    }
-    else
-    {
-
     }
     doOutro5(player);
     return 0;
