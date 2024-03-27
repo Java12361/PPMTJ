@@ -9,7 +9,7 @@ void doIntro5(char player[])
     print_mid("[ CHAPTER 5 ]\n");
     print_mid("Lost in the Jungle\n");
     print_mid("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"), sleep(1);
-    art_i5();
+    //art_i5();
     conv(player,"I can't believe I'm still alive. This must be Meuang Lap Lae island that the Nagas mentioned.");
     conv(player,"But where is Phra-Ram? Phra-Ram!!, you haven't told the mission yet. Where are you?!");
     print_mid("[ While you are exploring the island and calling out for Phra-Ram, you spot");
